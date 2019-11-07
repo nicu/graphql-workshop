@@ -7,7 +7,7 @@
   "license": "MIT",
   "workspaces": [
     "client",
-    "server-start",
+    "server",
     "server-finished"
   ]
 }
