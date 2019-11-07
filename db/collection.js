@@ -4,7 +4,9 @@ const debug = (...args) =>
   Collection.DEBUG_ENABLED && console.log.apply(console, args);
 
 const isLike = criteria => model =>
-  Object.keys(criteria).some(key => model[key].includes(criteria[key]));
+  Object.keys(criteria).every(key =>
+    model[key].toLowerCase().includes(criteria[key].toLowerCase())
+  );
 
 const isMatch = criteria => model =>
   Object.keys(criteria).every(key => criteria[key] === model[key]);
