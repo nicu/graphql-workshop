@@ -1,0 +1,14 @@
+[
+  {
+    "id": "p1",
+    "authorId": "u1",
+    "title": "Understanding ECMAScript 6",
+    "body": "ECMAScript 6 represents the biggest change to the core of JavaScript in the history of the language"
+  },
+  {
+    "id": "p2",
+    "authorId": "u2",
+    "title": "Speaking JavaScript ",
+    "body": "Due to its prevalence on the Web and other factors, JavaScript has become hard to avoid."
+  }
+]
