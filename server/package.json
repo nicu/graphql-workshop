@@ -1,0 +1,34 @@
+{
+  "name": "graphql-workshop-start",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:nicu/graphql-workshop.git",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "7.6.2",
+    "@babel/core": "7.6.4",
+    "@babel/node": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "apollo-server-testing": "2.9.7",
+    "eslint": "6.6.0",
+    "jest": "24.9.0",
+    "nodemon": "1.19.2"
+  },
+  "dependencies": {
+    "apollo-server": "2.9.7",
+    "dataloader": "1.4.0",
+    "dotenv": "8.2.0",
+    "graphql": "14.5.8",
+    "jsonwebtoken": "8.5.1"
+  },
+  "scripts": {
+    "server": "nodemon index.js --exec babel-node -r node_modules/dotenv/config",
+    "test": "jest"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/db/"
+    ]
+  }
+}

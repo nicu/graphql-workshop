@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# temporary ignored the `client` and `server-finished` folder
+client
+server-finished
