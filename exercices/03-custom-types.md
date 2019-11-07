@@ -105,7 +105,7 @@ type Post {
 
 type Comment {
   id: ID!
-  text: string
+  text: String!
   author: User!
   post: Post!
 }

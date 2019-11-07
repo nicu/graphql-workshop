@@ -1,6 +1,10 @@
 const uuid = require('./uuid');
 
-const debug = (...args) => null; //Collection.DEBUG_ENABLED && console.log.apply(console, args);
+const debug = (...args) =>
+  Collection.DEBUG_ENABLED && console.log.apply(console, args);
+
+const isLike = criteria => model =>
+  Object.keys(criteria).some(key => model[key].includes(criteria[key]));
 
 const isMatch = criteria => model =>
   Object.keys(criteria).every(key => criteria[key] === model[key]);
@@ -44,22 +48,19 @@ class Collection {
   }
 
   find(criteria) {
-    if (this.name === 'Users') {
-      debugger;
-    }
     debug(`${this.name}::FIND ALL WHERE`, criteria);
     if (Array.isArray(criteria)) {
       return criteria
-        .map(condition => this.items.filter(isMatch(criteria)))
+        .map(condition => this.items.filter(isLike(criteria)))
         .flat();
     }
-    return this.items.filter(isMatch(criteria));
+    return this.items.filter(isLike(criteria));
   }
 
   // TODO add tests
   findOne(criteria) {
     debug(`${this.name}::FIND ONE WHERE`, criteria);
-    const [item] = this.items.filter(isMatch(criteria));
+    const [item] = this.items.filter(isLike(criteria));
     return item;
   }
 
@@ -77,7 +78,6 @@ class Collection {
   }
 
   remove(criteria) {
-    console.log('Removing', criteria, 'from', this.items);
     debug(`${this.name}::REMOVE WHERE`, criteria);
     const removed = this.items.filter(isMatch(criteria));
     if (!removed.length) {
