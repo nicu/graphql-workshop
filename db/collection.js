@@ -3,11 +3,6 @@ const uuid = require('./uuid');
 const debug = (...args) =>
   Collection.DEBUG_ENABLED && console.log.apply(console, args);
 
-const isLike = criteria => model =>
-  Object.keys(criteria).every(key =>
-    model[key].toLowerCase().includes(criteria[key].toLowerCase())
-  );
-
 const isMatch = criteria => model =>
   Object.keys(criteria).every(key => criteria[key] === model[key]);
 
@@ -53,16 +48,16 @@ class Collection {
     debug(`${this.name}::FIND ALL WHERE`, criteria);
     if (Array.isArray(criteria)) {
       return criteria
-        .map(condition => this.items.filter(isLike(criteria)))
+        .map(condition => this.items.filter(isMatch(criteria)))
         .flat();
     }
-    return this.items.filter(isLike(criteria));
+    return this.items.filter(isMatch(criteria));
   }
 
   // TODO add tests
   findOne(criteria) {
     debug(`${this.name}::FIND ONE WHERE`, criteria);
-    const [item] = this.items.filter(isLike(criteria));
+    const [item] = this.items.filter(isMatch(criteria));
     return item;
   }
 
